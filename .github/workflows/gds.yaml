@@ -12,21 +12,21 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: recursive
 
       - name: Build GDS
-        uses: TinyTapeout/tt-gds-action@tt10
+        uses: TinyTapeout/tt-gds-action@ttsky26d
         with:
-          flow: openlane2
+          pdk: sky130A
 
   precheck:
     needs: gds
     runs-on: ubuntu-24.04
     steps:
       - name: Run Tiny Tapeout Precheck
-        uses: TinyTapeout/tt-gds-action/precheck@tt10
+        uses: TinyTapeout/tt-gds-action/precheck@ttsky26d
 
   viewer:
     needs: gds
@@ -35,4 +35,4 @@ jobs:
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
     steps:
-      - uses: TinyTapeout/tt-gds-action/viewer@tt10
+      - uses: TinyTapeout/tt-gds-action/viewer@ttsky26d
